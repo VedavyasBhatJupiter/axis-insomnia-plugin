@@ -5,6 +5,8 @@ module.exports = function(context) {
         return
     }
 
+    if (context.response.getHeader("Content-Type") !== "application/json") return;
+
     const response = JSON.parse(context.response.getBody().toString())
     console.log("Processing response for decryption: ", response)
     const unwrappedResponseKey = Object.keys(response)[0]
