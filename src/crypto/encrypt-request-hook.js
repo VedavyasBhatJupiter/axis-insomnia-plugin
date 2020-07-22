@@ -6,7 +6,7 @@ module.exports = function(context) {
     }
 
     console.log("input: ", context.request)
-    const request = JSON.parse(context.request.getBodyText())
+    const request = JSON.parse(context.request.getBody().text)
     console.log("Processing request for encryption: " + JSON.stringify(request))
     const unwrappedRequestKey = Object.keys(request)[0]
     let requestBodyKey = Object.keys(request[unwrappedRequestKey]).find(field => field.endsWith("RequestBody"))
@@ -21,7 +21,9 @@ module.exports = function(context) {
         request[unwrappedRequestKey][requestBodyKey + "Encrypted"] = requestBodyEncrypted
 
         console.log("New request: ", request)
-        context.request.setBodyText(JSON.stringify(request))
+        let body = context.request.getBody()
+        body.text = JSON.stringify(request)
+        context.request.setBody(body)
     } else {
         console.log("Encryptable field not found")
     }
