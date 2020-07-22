@@ -5,3 +5,7 @@ module.exports.requestHooks = [
 module.exports.responseHooks = [
     require('./src/crypto/decrypt-response-hook')
 ];
+
+module.exports.templateTags = [
+    require('./src/otp-ref-id-generator')
+]
