@@ -5,7 +5,6 @@ module.exports = function(context) {
         return
     }
 
-    console.log("input: ", context.request)
     const request = JSON.parse(context.request.getBody().text)
     console.log("Processing request for encryption: " + JSON.stringify(request))
     const unwrappedRequestKey = Object.keys(request)[0]
