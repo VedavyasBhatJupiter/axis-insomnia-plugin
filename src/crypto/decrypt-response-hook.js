@@ -1,7 +1,11 @@
 module.exports = function(context) {
-    const key = context.request.getEnvironmentVariable("AxisEncryptionKey")
+    const constants = require("../constants")
+
+    if (context.request.getEnvironmentVariable(constants.environmentKeys.crypto.enableResponseDecryption) !== true) return;
+
+    const key = context.request.getEnvironmentVariable(constants.environmentKeys.crypto.aesKey)
     if (key === undefined) {
-        console.log("No encryption key env set so skipping decryption")
+        console.log("No encryption key env set so skipping response decryption")
         return
     }
 

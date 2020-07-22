@@ -1,11 +1,16 @@
 module.exports = function(context) {
-    const key = context.request.getEnvironmentVariable("AxisEncryptionKey")
+    const constants = require("../constants")
+
+    if (context.request.getEnvironmentVariable(constants.environmentKeys.crypto.enableRequestEncryption) !== true) return;
+
+    const key = context.request.getEnvironmentVariable(constants.environmentKeys.crypto.aesKey)
     if (key === undefined) {
-        console.log("No encryption key env set so skipping encryption")
+        console.log("No encryption key env set so skipping request encryption")
         return
     }
 
     if (context.request.getBody().text === undefined) return;
+    if (context.request.getHeader("Content-Type") !== "application/json") return;
 
     const request = JSON.parse(context.request.getBody().text)
     console.log("Processing request for encryption: " + JSON.stringify(request))

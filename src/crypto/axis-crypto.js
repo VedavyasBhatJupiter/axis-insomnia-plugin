@@ -28,10 +28,4 @@ class AxisCrypto {
     }
 }
 
-// let c = new AxisCrypto("")
-// let cipherText = c.encrypt("lorem ipsum dolor set")
-// console.log(cipherText)
-// let plainText = c.decrypt(cipherText)
-// console.log(plainText)
-
 module.exports = AxisCrypto
