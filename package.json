@@ -1,0 +1,14 @@
+{
+  "name": "insomna-axis",
+  "version": "1.0.0",
+  "author": "Vedavyas Bhat <vedavyas.bhat@jupiter.money>",
+  "description": "Axis Bank Utils",
+  "license": "MIT",
+  "main": "plugin.js",
+  "insomnia": {
+    "name": "axis",
+    "description": "Axis Bank Utils"
+  },
+  "dependencies": {},
+  "devDependencies": []
+}
