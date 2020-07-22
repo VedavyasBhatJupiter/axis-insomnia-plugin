@@ -5,7 +5,8 @@ module.exports = function(context) {
         return
     }
 
-    const request = JSON.parse(context.request.requestBody.text)
+    console.log("input: ", context.request)
+    const request = JSON.parse(context.request.getBodyText())
     console.log("Processing request for encryption: " + JSON.stringify(request))
     const unwrappedRequestKey = Object.keys(request)[0]
     let requestBodyKey = Object.keys(request[unwrappedRequestKey]).find(field => field.endsWith("RequestBody"))
@@ -19,21 +20,9 @@ module.exports = function(context) {
         delete request[unwrappedRequestKey][requestBodyKey];
         request[unwrappedRequestKey][requestBodyKey + "Encrypted"] = requestBodyEncrypted
 
-        console.log("New request: " + JSON.stringify(request))
+        console.log("New request: ", request)
+        context.request.setBodyText(JSON.stringify(request))
     } else {
         console.log("Encryptable field not found")
     }
 }
-
-const request = {
-    SampleRequest: {
-        SubHeader: {
-            requestUUID: "uuid"
-        },
-        SampleRequestBody: {
-            name: "Vedavyas Bhat",
-            age: 27
-        }
-    }
-}
-
