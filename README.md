@@ -23,4 +23,4 @@ An insomnia plugin with utilities for Axis Bank APIs
         "axisEncryptionKey": "axis-encryption-key-base64"
     }
     ```
-5. Thank me with a beer
+5. Requests/responses will now be automatically encrypted/decrypted as per the axis format. A template for OTP reference ids will also be available (it will show up in suggestion dialog, `ctrl+space`). Thank me with a beer.
