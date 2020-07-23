@@ -1,4 +1,4 @@
-## insomnia-axis-plugin
+## axis-insomnia-plugin
 
 An insomnia plugin with utilities for Axis Bank APIs
 
